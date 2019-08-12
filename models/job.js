@@ -9,7 +9,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        salary: DataTypes.INT,
+        salary: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         description: {
             type: DataTypes.STRING,
             allowNull: false
@@ -22,10 +25,10 @@ module.exports = function (sequelize, DataTypes) {
         },
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE,
-        define: {
-            //prevent sequelize from pluralizing table names
-            freezeTableName: true
-        }
+        // define: {
+        //     //prevent sequelize from pluralizing table names
+        //     freezeTableName: true
+        // }
     });
 
 

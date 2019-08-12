@@ -23,7 +23,16 @@ const app = express();
 
 app.get("/", (req, res) => res.send('INDEX'));
 
+//ROUTES
+app.use("/jobs", require("./routes/jobs"));
+
 const PORT = process.env.PORT || 3050;
 
+var db = require("./models/index.js");
+db.sequelize.sync().then(function () {
+    app.listen(PORT, function () {
+        console.log('server started at http://localhost:' + PORT);
+    });
+});
 
-app.listen(PORT, console.log("App listening on PORT " + PORT));
+// app.listen(PORT, console.log("App listening on PORT " + PORT));
