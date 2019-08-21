@@ -21,7 +21,18 @@ sequelize.authenticate()
 
 const app = express();
 
-app.get("/", (req, res) => res.send('INDEX'));
+//STATIC FILE
+app.use(express.static("public"));
+
+//MIDDLEWARE
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.get("/", (req, res) => res.render('index', { layout: "landing" }));
+
+//HANDLEBARS
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 //ROUTES
 app.use("/jobs", require("./routes/jobs"));
